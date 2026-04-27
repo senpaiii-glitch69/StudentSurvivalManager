@@ -1,0 +1,3 @@
+Notebooks,500
+Coffee,100
+Apple Music ,100

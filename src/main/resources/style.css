@@ -1,0 +1,246 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   StudyHub Pro — JavaFX Dark Theme
+   Place this file at: src/main/resources/style.css
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── TableView container ─────────────────────────────────────────────────── */
+.table-view {
+    -fx-background-color: rgba(255, 255, 255, 0.03);
+    -fx-border-color: rgba(255, 255, 255, 0.06);
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-padding: 0;
+}
+
+/* ── Column header strip ─────────────────────────────────────────────────── */
+.table-view .column-header-background {
+    -fx-background-color: rgba(99, 102, 241, 0.15);
+    -fx-background-radius: 14 14 0 0;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-size: 38;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: rgba(255, 255, 255, 0.55);
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 0 6;
+}
+
+/* ── Rows ────────────────────────────────────────────────────────────────── */
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(255, 255, 255, 0.04);
+    -fx-border-width: 0 0 1 0;
+    -fx-cell-size: 42px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: rgba(255, 255, 255, 0.015);
+}
+
+.table-row-cell:hover {
+    -fx-background-color: rgba(99, 102, 241, 0.1);
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgba(99, 102, 241, 0.25);
+}
+
+/* ── Cells ───────────────────────────────────────────────────────────────── */
+.table-cell {
+    -fx-text-fill: rgba(255, 255, 255, 0.82);
+    -fx-font-size: 13px;
+    -fx-padding: 0 6;
+}
+
+/* ── Scroll bars ─────────────────────────────────────────────────────────── */
+.scroll-bar {
+    -fx-background-color: transparent;
+    -fx-opacity: 0.6;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgba(99, 102, 241, 0.45);
+    -fx-background-radius: 6;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: rgba(99, 102, 241, 0.7);
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 2;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── ScrollPane viewport ─────────────────────────────────────────────────── */
+.scroll-pane,
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* ── DatePicker ──────────────────────────────────────────────────────────── */
+.date-picker .text-field {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.3);
+    -fx-background-radius: 9;
+    -fx-padding: 9 10;
+    -fx-font-size: 13px;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-background-radius: 0 9 9 0;
+}
+
+.date-picker .arrow-button .arrow {
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Popup calendar */
+.date-picker-popup {
+    -fx-background-color: #1e2035;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0, 0, 6);
+}
+
+.date-picker-popup > * > .spinner {
+    -fx-background-color: rgba(99, 102, 241, 0.2);
+    -fx-background-radius: 8 8 0 0;
+}
+
+.date-picker-popup > * > .spinner .label {
+    -fx-text-fill: white;
+}
+
+.date-picker-popup > * > .spinner .button .left-arrow,
+.date-picker-popup > * > .spinner .button .right-arrow {
+    -fx-background-color: rgba(255, 255, 255, 0.6);
+}
+
+.date-picker-popup > * > .spinner .button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.date-picker-popup .month-year-pane {
+    -fx-background-color: transparent;
+}
+
+.date-picker-popup .day-name-cell {
+    -fx-text-fill: rgba(99, 102, 241, 0.8);
+    -fx-font-size: 11px;
+}
+
+.date-picker-popup .day-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+    -fx-background-radius: 7;
+}
+
+.date-picker-popup .day-cell:hover {
+    -fx-background-color: rgba(99, 102, 241, 0.25);
+    -fx-text-fill: white;
+}
+
+.date-picker-popup .selected {
+    -fx-background-color: #6366f1;
+    -fx-text-fill: white;
+}
+
+.date-picker-popup .today {
+    -fx-border-color: #6366f1;
+    -fx-border-radius: 7;
+    -fx-border-width: 1;
+}
+
+/* ── ComboBox ────────────────────────────────────────────────────────────── */
+.combo-box {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-background-radius: 9;
+    -fx-border-color: rgba(255, 255, 255, 0.06);
+    -fx-border-radius: 9;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-font-size: 13px;
+    -fx-padding: 6 10;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow-button .arrow {
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Dropdown popup */
+.combo-box-popup .list-view {
+    -fx-background-color: #1e2035;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 18, 0, 0, 6);
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgba(255, 255, 255, 0.8);
+    -fx-font-size: 13px;
+    -fx-padding: 9 14;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: rgba(99, 102, 241, 0.22);
+    -fx-text-fill: white;
+}
+
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: rgba(99, 102, 241, 0.4);
+    -fx-text-fill: white;
+}
+
+/* ── Tooltip ─────────────────────────────────────────────────────────────── */
+.tooltip {
+    -fx-background-color: #1e2035;
+    -fx-text-fill: rgba(255, 255, 255, 0.85);
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-font-size: 12px;
+    -fx-padding: 7 12;
+}
+
+/* ── Separator ───────────────────────────────────────────────────────────── */
+.separator .line {
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-width: 1 0 0 0;
+}
+
+/* ── TextField & PasswordField focus glow ────────────────────────────────── */
+.text-field:focused,
+.password-field:focused {
+    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.45), 12, 0, 0, 0);
+}
