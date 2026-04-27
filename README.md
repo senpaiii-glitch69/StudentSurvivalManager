@@ -14,13 +14,16 @@ The provided `run.sh` script expects a local JavaFX SDK installation at `~/javaf
 
 ## GitHub website (Pages)
 
-This repository now includes a GitHub Pages website in `docs/`.
+This repository now includes a fully functional website in `docs/` with:
 
-- Website source: `docs/index.html`
-- Pages workflow: `.github/workflows/pages.yml`
-- Build workflow for desktop JAR: `.github/workflows/build.yml`
+- Expense tracking
+- Assignment tracking with due-date status
+- Event tracking with date/location status
+- Browser persistence using localStorage
 
-Important: the JavaFX app itself is still a desktop app, so it does not run inside the browser. The website is a landing/download page for the project.
+Deployment is automatic via `.github/workflows/pages.yml`.
+
+Desktop JavaFX app support is still available through the Maven build and `.github/workflows/build.yml`.
 
 ## Create the GitHub repo
 
