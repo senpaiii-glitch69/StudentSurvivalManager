@@ -12,15 +12,15 @@ mvn clean javafx:run
 
 The provided `run.sh` script expects a local JavaFX SDK installation at `~/javafx/javafx-sdk-17.0.19/lib`.
 
-## GitHub deployment
+## GitHub website (Pages)
 
-This is a desktop JavaFX app, so it cannot be deployed to GitHub Pages like a web app. The practical GitHub deployment path is:
+This repository now includes a GitHub Pages website in `docs/`.
 
-1. Push the source code to a GitHub repository.
-2. Let GitHub Actions build the project on every push.
-3. Download the packaged JAR from the workflow artifact, or attach it to a GitHub Release.
+- Website source: `docs/index.html`
+- Pages workflow: `.github/workflows/pages.yml`
+- Build workflow for desktop JAR: `.github/workflows/build.yml`
 
-The workflow in [`.github/workflows/build.yml`](.github/workflows/build.yml) already does the build and uploads the JAR artifact.
+Important: the JavaFX app itself is still a desktop app, so it does not run inside the browser. The website is a landing/download page for the project.
 
 ## Create the GitHub repo
 
