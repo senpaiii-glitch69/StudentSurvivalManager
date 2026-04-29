@@ -1,8 +1,8 @@
 #!/bin/bash
 
-java -Dprism.order=sw \
+java \
 --module-path ~/javafx/javafx-sdk-17.0.19/lib \
---add-modules javafx.controls \
--cp target/classes \
-com.student.StudentManagerFinal
+--add-modules javafx.controls,javafx.fxml \
+-cp target/classes:$(find ~/.m2/repository -name "gson-*.jar" | head -1) \
+com.student.StudyHubPro
 
