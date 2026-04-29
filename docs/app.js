@@ -475,9 +475,9 @@ function renderAppShell() {
             <span class="topbar-subtitle">Web deployment matching the desktop app layout</span>
           </div>
           <div class="topbar-actions">
-            <button id="clearDataBtn" class="ghost" type="button">Clear All Data</button>
+            <button id="clearDataBtn" class="ghost" type="button" onclick="window.__studentManagerClearAllData()">Clear All Data</button>
             <a class="ghost" href="https://github.com/senpaiii-glitch69/StudentSurvivalManager" target="_blank" rel="noreferrer">GitHub</a>
-            <button id="logoutBtn" class="ghost" type="button">Logout</button>
+            <button id="logoutBtn" class="ghost" type="button" onclick="window.__studentManagerLogout()">Logout</button>
           </div>
         </header>
 
@@ -1300,7 +1300,23 @@ function render() {
   applyTheme();
   if (!root) return;
   root.innerHTML = state.auth ? renderAppShell() : renderLoginScreen();
+  bindShellControls();
   updateTimerDom();
+}
+
+function bindShellControls() {
+  const clearButton = document.getElementById("clearDataBtn");
+  if (clearButton) {
+    clearButton.onclick = () => {
+      const ok = window.confirm("Delete all stored website data?");
+      if (ok) clearAllData();
+    };
+  }
+
+  const logoutButton = document.getElementById("logoutBtn");
+  if (logoutButton) {
+    logoutButton.onclick = logout;
+  }
 }
 
 function handleSubmit(event) {
@@ -1475,15 +1491,6 @@ function handleClick(event) {
     return;
   }
 
-  if (target.closest("#clearDataBtn")) {
-    const ok = window.confirm("Delete all stored website data?");
-    if (ok) clearAllData();
-    return;
-  }
-
-  if (target.closest("#logoutBtn")) {
-    logout();
-  }
 }
 
 function handleInput(event) {
@@ -1503,6 +1510,8 @@ function bindEvents() {
 }
 
 function init() {
+  window.__studentManagerLogout = logout;
+  window.__studentManagerClearAllData = clearAllData;
   loadState();
   bindEvents();
   render();
