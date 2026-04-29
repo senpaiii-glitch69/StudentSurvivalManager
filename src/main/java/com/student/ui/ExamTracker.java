@@ -6,8 +6,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -163,7 +161,6 @@ public class ExamTracker {
             final Button resultBtn = new Button("Result");
             final Button deleteBtn = new Button("🗑");
             {
-                HBox actions = new HBox(5, resultBtn, deleteBtn);
                 resultBtn.setStyle(
                     "-fx-background-color: rgba(99,102,241,0.2);" +
                     "-fx-text-fill: #a5b4fc;" +
@@ -187,7 +184,7 @@ public class ExamTracker {
             }
         });
 
-        table.getColumns().addAll(subjectCol, titleCol, dateCol, scoreCol, gradeCol, statusCol, actionCol);
+        table.getColumns().addAll(List.of(subjectCol, titleCol, dateCol, scoreCol, gradeCol, statusCol, actionCol));
 
         exams.addListener((javafx.collections.ListChangeListener<Exam>) c -> updateStats());
 
@@ -311,11 +308,7 @@ public class ExamTracker {
 
         completedLabel.setText(String.valueOf(completed.size()));
 
-        // Update upcoming count
-        long upcoming = exams.stream()
-            .filter(e -> e.getStatus().equals("Upcoming"))
-            .count();
-        // Note: Complex UI hierarchy update requires proper root reference
+        // Note: Upcoming count calculation - complex UI hierarchy update skipped
     }
 
     public List<Exam> getExams() {

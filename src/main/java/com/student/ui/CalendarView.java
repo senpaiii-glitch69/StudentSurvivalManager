@@ -11,7 +11,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -136,7 +135,6 @@ public class CalendarView {
             LocalDate date = currentMonth.atDay(day);
             StackPane cell = createDayCell(date, day);
 
-            final int currentDay = day;
             cell.setOnMouseClicked(e -> {
                 selectedDate = date;
                 onDateSelected.accept(date);

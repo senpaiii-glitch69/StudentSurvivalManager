@@ -8,7 +8,6 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,19 +19,17 @@ public class GlobalSearch {
     private List<EventItem> events;
     private List<Note> notes;
     private List<Course> courses;
-    private List<Attendance> attendance;
     private List<Exam> exams;
     private List<Goal> goals;
 
     public GlobalSearch(List<Expense> expenses, List<Task> tasks, List<EventItem> events,
-                       List<Note> notes, List<Course> courses, List<Attendance> attendance,
+                       List<Note> notes, List<Course> courses,
                        List<Exam> exams, List<Goal> goals) {
         this.expenses = expenses;
         this.tasks = tasks;
         this.events = events;
         this.notes = notes;
         this.courses = courses;
-        this.attendance = attendance;
         this.exams = exams;
         this.goals = goals;
     }

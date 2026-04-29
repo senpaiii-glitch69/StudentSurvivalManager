@@ -6,15 +6,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -134,7 +130,9 @@ public class AttendanceTracker {
 
         // Attendance table
         table = new TableView<>(attendance);
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        @SuppressWarnings("deprecation")
+        var policy = TableView.CONSTRAINED_RESIZE_POLICY;
+        table.setColumnResizePolicy(policy);
         VBox.setVgrow(table, Priority.ALWAYS);
         table.setStyle("-fx-background-color: transparent;");
 
@@ -185,7 +183,7 @@ public class AttendanceTracker {
             }
         });
 
-        table.getColumns().addAll(subjectCol, dateCol, statusCol, deleteCol);
+        table.getColumns().addAll(List.of(subjectCol, dateCol, statusCol, deleteCol));
 
         attendance.addListener((javafx.collections.ListChangeListener<Attendance>) c -> updateStats());
 

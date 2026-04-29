@@ -755,7 +755,7 @@ public class StudyHubPro extends Application {
             protected void updateItem(Void x, boolean empty) { super.updateItem(x, empty); setGraphic(empty ? null : b); }
         });
 
-        table.getColumns().addAll(tc, dc, lc, typeCol, sc, doneCol, delCol);
+        table.getColumns().addAll(List.of(tc, dc, lc, typeCol, sc, doneCol, delCol));
 
         addBtn.setOnAction(e -> {
             String titleTxt = titleField.getText().trim();
@@ -891,7 +891,7 @@ public class StudyHubPro extends Application {
 
         Label title = sectionTitle("🔍  Global Search");
 
-        GlobalSearch globalSearch = new GlobalSearch(expenses, tasks, events, notes, courses, attendance, exams, goals);
+        GlobalSearch globalSearch = new GlobalSearch(expenses, tasks, events, notes, courses, exams, goals);
 
         pane.getChildren().addAll(title, globalSearch.create());
         return pane;

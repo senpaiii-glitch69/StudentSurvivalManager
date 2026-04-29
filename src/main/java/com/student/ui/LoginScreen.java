@@ -18,11 +18,9 @@ import java.util.function.Consumer;
 
 public class LoginScreen {
 
-    private Stage stage;
     private Consumer<User> onLoginSuccess;
 
     public LoginScreen(Stage stage, Consumer<User> onLoginSuccess) {
-        this.stage = stage;
         this.onLoginSuccess = onLoginSuccess;
     }
 
