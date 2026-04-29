@@ -191,8 +191,10 @@ public class PomodoroTimer {
     private void updateProgress() {
         int totalSeconds = isWorkMode ? workMinutes * 60 : breakMinutes * 60;
         double progress = 1.0 - ((double) currentSeconds / totalSeconds);
-        progressCircle.setStrokeDashArray(2 * Math.PI * 100);
-        progressCircle.setStrokeDashOffset(2 * Math.PI * 100 * (1 - progress));
+        // Scale progress circle based on progress
+        double scaleValue = 0.8 + (progress * 0.2); // Scale between 0.8 and 1.0
+        progressCircle.setScaleX(scaleValue);
+        progressCircle.setScaleY(scaleValue);
     }
 
     public void setWorkMinutes(int minutes) {

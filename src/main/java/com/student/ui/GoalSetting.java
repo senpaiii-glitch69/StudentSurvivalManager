@@ -201,11 +201,11 @@ public class GoalSetting {
         updateBtn.setOnAction(e -> showUpdateDialog(goal));
         completeBtn.setOnAction(e -> {
             goal.setCompleted(!goal.isCompleted());
-            refreshGoals((VBox) ((ScrollPane) ((VBox) root.getChildren().get(1)).getContent()));
+            refreshGoals((VBox) ((ScrollPane) root.getChildren().get(1)).getContent());
         });
         deleteBtn.setOnAction(e -> {
             goals.remove(goal);
-            refreshGoals((VBox) ((ScrollPane) ((VBox) root.getChildren().get(1)).getContent()));
+            refreshGoals((VBox) ((ScrollPane) root.getChildren().get(1)).getContent());
         });
 
         actions.getChildren().addAll(updateBtn, completeBtn, deleteBtn);
@@ -317,7 +317,7 @@ public class GoalSetting {
                 if (goal.getCurrentValue() >= goal.getTargetValue()) {
                     goal.setCompleted(true);
                 }
-                refreshGoals((VBox) ((ScrollPane) ((VBox) root.getChildren().get(1)).getContent()));
+                refreshGoals((VBox) ((ScrollPane) root.getChildren().get(1)).getContent());
             }
         });
     }

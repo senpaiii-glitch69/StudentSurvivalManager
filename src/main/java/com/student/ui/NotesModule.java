@@ -77,15 +77,17 @@ public class NotesModule {
         header.getChildren().addAll(title, searchField, subjectFilter, newBtn);
 
         // Main content area
-        HBox contentArea = new HBox(15);
-        contentArea.setHgrow(contentArea, Priority.ALWAYS);
+        HBox mainContent = new HBox(15);
+        HBox.setHgrow(mainContent, Priority.ALWAYS);
 
         // Notes list
         VBox listPane = new VBox(10);
         listPane.setPrefWidth(300);
 
         notesList = new TableView<>(notes);
-        notesList.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        @SuppressWarnings("deprecation")
+        var policy = TableView.CONSTRAINED_RESIZE_POLICY;
+        notesList.setColumnResizePolicy(policy);
         notesList.setPrefHeight(400);
         notesList.setStyle("-fx-background-color: transparent;");
 
@@ -96,7 +98,7 @@ public class NotesModule {
         subjectCol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getSubject()));
         subjectCol.setMaxWidth(100);
 
-        notesList.getColumns().addAll(titleCol, subjectCol);
+        notesList.getColumns().addAll(List.of(titleCol, subjectCol));
 
         notesList.getSelectionModel().selectedItemProperty().addListener((obs, old, newVal) -> {
             if (newVal != null) {
@@ -210,7 +212,7 @@ public class NotesModule {
 
         editorPane.getChildren().addAll(noteHeader, metadataBox, toolbar, contentArea);
 
-        contentArea.getChildren().addAll(listPane, editorPane);
+        mainContent.getChildren().addAll(listPane, editorPane);
 
         // Event handlers
         saveBtn.setOnAction(e -> saveCurrentNote());
@@ -252,7 +254,7 @@ public class NotesModule {
             filterNotes(searchField.getText(), newVal);
         });
 
-        root.getChildren().addAll(header, contentArea);
+        root.getChildren().addAll(header, mainContent);
 
         // Select first note if available
         if (!notes.isEmpty()) {

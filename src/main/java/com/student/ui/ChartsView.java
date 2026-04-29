@@ -121,10 +121,12 @@ public class ChartsView {
         }
 
         // Monthly expense trend
-        BarChart<String, Number> barChart = new BarChart<>();
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
         barChart.setTitle("Monthly Expenses");
-        barChart.getXAxis().setLabel("Month");
-        barChart.getYAxis().setLabel("Amount");
+        xAxis.setLabel("Month");
+        yAxis.setLabel("Amount");
         barChart.setLegendVisible(false);
         barChart.setStyle("-fx-text-fill: white;");
 
@@ -173,10 +175,12 @@ public class ChartsView {
         }
 
         // Priority distribution
-        BarChart<String, Number> priorityChart = new BarChart<>();
+        CategoryAxis xAxis2 = new CategoryAxis();
+        NumberAxis yAxis2 = new NumberAxis();
+        BarChart<String, Number> priorityChart = new BarChart<>(xAxis2, yAxis2);
         priorityChart.setTitle("Tasks by Priority");
-        priorityChart.getXAxis().setLabel("Priority");
-        priorityChart.getYAxis().setLabel("Count");
+        xAxis2.setLabel("Priority");
+        yAxis2.setLabel("Count");
         priorityChart.setLegendVisible(false);
         priorityChart.setStyle("-fx-text-fill: white;");
 

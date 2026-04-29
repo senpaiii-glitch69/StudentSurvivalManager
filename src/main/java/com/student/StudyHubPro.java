@@ -10,7 +10,7 @@ import javafx.collections.*;
 import javafx.geometry.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.effect.*;
+
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 import javafx.scene.shape.*;
@@ -466,7 +466,9 @@ public class StudyHubPro extends Application {
 
         // Table
         TableView<Expense> table = new TableView<>(expenses);
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        @SuppressWarnings("deprecation")
+        var policy1 = TableView.CONSTRAINED_RESIZE_POLICY;
+        table.setColumnResizePolicy(policy1);
         VBox.setVgrow(table, Priority.ALWAYS);
 
         TableColumn<Expense, String> nc = new TableColumn<>("Expense Name");
@@ -491,7 +493,7 @@ public class StudyHubPro extends Application {
             { b.setStyle(deleteBtnStyle()); b.setOnAction(e -> expenses.remove(getTableRow().getItem())); }
             protected void updateItem(Void x, boolean empty) { super.updateItem(x, empty); setGraphic(empty ? null : b); }
         });
-        table.getColumns().addAll(nc, cc, dc, vc, delCol);
+        table.getColumns().addAll(List.of(nc, cc, dc, vc, delCol));
 
         // Total bar
         HBox totalBar = new HBox();
@@ -578,7 +580,9 @@ public class StudyHubPro extends Application {
 
         // Table
         TableView<Task> table = new TableView<>(tasks);
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        @SuppressWarnings("deprecation")
+        var policy2 = TableView.CONSTRAINED_RESIZE_POLICY;
+        table.setColumnResizePolicy(policy2);
         VBox.setVgrow(table, Priority.ALWAYS);
 
         TableColumn<Task, String> nc = new TableColumn<>("Assignment");
@@ -625,7 +629,7 @@ public class StudyHubPro extends Application {
             protected void updateItem(Void x, boolean empty) { super.updateItem(x, empty); setGraphic(empty ? null : b); }
         });
 
-        table.getColumns().addAll(nc, pc, sc, doneCol, delCol);
+        table.getColumns().addAll(List.of(nc, pc, sc, doneCol, delCol));
 
         // Wire add button
         addBtn.setOnAction(e -> {
@@ -694,7 +698,9 @@ public class StudyHubPro extends Application {
         formCard.getChildren().addAll(formTitle, fields);
 
         TableView<EventItem> table = new TableView<>(events);
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        @SuppressWarnings("deprecation")
+        var policy3 = TableView.CONSTRAINED_RESIZE_POLICY;
+        table.setColumnResizePolicy(policy3);
         VBox.setVgrow(table, Priority.ALWAYS);
 
         TableColumn<EventItem, String> tc = new TableColumn<>("Event");

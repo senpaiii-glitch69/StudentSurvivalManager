@@ -130,12 +130,12 @@ public class NotificationSystem {
             .collect(Collectors.toList());
 
         for (Task task : dueToday) {
-            if (!hasNotificationForTask(task.getId(), "due_today")) {
+            if (!hasNotificationForTask(task.getName(), "due_today")) {
                 addNotification(new Notification(
                     "📋 Task Due Today",
                     task.getName() + " is due today!",
                     "task",
-                    task.getId(),
+                    task.getName(),
                     LocalDateTime.now()
                 ));
             }
@@ -147,12 +147,12 @@ public class NotificationSystem {
             .collect(Collectors.toList());
 
         for (Task task : dueTomorrow) {
-            if (!hasNotificationForTask(task.getId(), "due_tomorrow")) {
+            if (!hasNotificationForTask(task.getName(), "due_tomorrow")) {
                 addNotification(new Notification(
                     "📋 Task Due Tomorrow",
                     task.getName() + " is due tomorrow",
                     "task",
-                    task.getId(),
+                    task.getName(),
                     LocalDateTime.now()
                 ));
             }
@@ -164,12 +164,12 @@ public class NotificationSystem {
             .collect(Collectors.toList());
 
         for (Task task : overdue) {
-            if (!hasNotificationForTask(task.getId(), "overdue")) {
+            if (!hasNotificationForTask(task.getName(), "overdue")) {
                 addNotification(new Notification(
                     "⚠️ Overdue Task",
                     task.getName() + " is overdue!",
                     "task",
-                    task.getId(),
+                    task.getName(),
                     LocalDateTime.now()
                 ));
             }
@@ -181,12 +181,12 @@ public class NotificationSystem {
             .collect(Collectors.toList());
 
         for (EventItem event : eventsToday) {
-            if (!hasNotificationForEvent(event.getId(), "today")) {
+            if (!hasNotificationForEvent(event.getTitle(), "today")) {
                 addNotification(new Notification(
                     "📅 Event Today",
                     event.getTitle() + " is today at " + event.getLocation(),
                     "event",
-                    event.getId(),
+                    event.getTitle(),
                     LocalDateTime.now()
                 ));
             }
@@ -221,14 +221,14 @@ public class NotificationSystem {
         }
 
         for (Notification notification : notifications) {
-            VBox notifCard = createNotificationCard(notification);
+            VBox notifCard = createNotificationCard(notification, list);
             list.getChildren().add(notifCard);
         }
 
         updateUnreadCount();
     }
 
-    private VBox createNotificationCard(Notification notification) {
+    private VBox createNotificationCard(Notification notification, VBox list) {
         VBox card = new VBox(10);
         card.setPadding(new Insets(15));
         card.setStyle(
@@ -324,7 +324,7 @@ public class NotificationSystem {
 
     private void markAllAsRead() {
         notifications.forEach(n -> n.setRead(true));
-        refreshNotifications((VBox) ((ScrollPane) ((VBox) root.getChildren().get(2)).getContent()));
+        refreshNotifications((VBox) ((ScrollPane) root.getChildren().get(2)).getContent());
     }
 
     public List<Notification> getNotifications() {
