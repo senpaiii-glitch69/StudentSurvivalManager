@@ -33,8 +33,6 @@ public class StudyHubPro extends Application {
     final ObservableList<Task>    tasks    = FXCollections.observableArrayList();
     final ObservableList<EventItem> events = FXCollections.observableArrayList();
     final ObservableList<Course> courses = FXCollections.observableArrayList();
-    final ObservableList<Attendance> attendance = FXCollections.observableArrayList();
-    final ObservableList<Exam> exams = FXCollections.observableArrayList();
     final ObservableList<Note> notes = FXCollections.observableArrayList();
     final ObservableList<ScheduleItem> schedule = FXCollections.observableArrayList();
     final ObservableList<Goal> goals = FXCollections.observableArrayList();
@@ -71,8 +69,6 @@ public class StudyHubPro extends Application {
         tasks.clear();
         events.clear();
         courses.clear();
-        attendance.clear();
-        exams.clear();
         notes.clear();
         schedule.clear();
         goals.clear();
@@ -81,8 +77,6 @@ public class StudyHubPro extends Application {
         tasks.addAll(appData.getTasks());
         events.addAll(appData.getEvents());
         courses.addAll(appData.getCourses());
-        attendance.addAll(appData.getAttendance() != null ? appData.getAttendance() : new ArrayList<>());
-        exams.addAll(appData.getExams() != null ? appData.getExams() : new ArrayList<>());
         notes.addAll(appData.getNotes() != null ? appData.getNotes() : new ArrayList<>());
         schedule.addAll(appData.getSchedule() != null ? appData.getSchedule() : new ArrayList<>());
         goals.addAll(appData.getGoals() != null ? appData.getGoals() : new ArrayList<>());
@@ -109,16 +103,6 @@ public class StudyHubPro extends Application {
         courses.addListener((ListChangeListener<Course>) c -> {
             appData.getCourses().clear();
             appData.getCourses().addAll(courses);
-            if (appData.getSettings().isAutoSave()) DataManager.saveData();
-        });
-
-        attendance.addListener((ListChangeListener<Attendance>) c -> {
-            appData.setAttendance(new ArrayList<>(attendance));
-            if (appData.getSettings().isAutoSave()) DataManager.saveData();
-        });
-
-        exams.addListener((ListChangeListener<Exam>) c -> {
-            appData.setExams(new ArrayList<>(exams));
             if (appData.getSettings().isAutoSave()) DataManager.saveData();
         });
 
@@ -169,14 +153,12 @@ public class StudyHubPro extends Application {
         navBtns[5].setOnAction(e -> switchPane(content, calendarPane()));
         navBtns[6].setOnAction(e -> switchPane(content, gradesPane()));
         navBtns[7].setOnAction(e -> switchPane(content, chartsPane()));
-        navBtns[8].setOnAction(e -> switchPane(content, attendancePane()));
-        navBtns[9].setOnAction(e -> switchPane(content, examsPane()));
-        navBtns[10].setOnAction(e -> switchPane(content, notesPane()));
-        navBtns[11].setOnAction(e -> switchPane(content, schedulePane()));
-        navBtns[12].setOnAction(e -> switchPane(content, goalsPane()));
-        navBtns[13].setOnAction(e -> switchPane(content, searchPane()));
-        navBtns[14].setOnAction(e -> switchPane(content, themePane()));
-        navBtns[15].setOnAction(e -> switchPane(content, notificationsPane()));
+        navBtns[8].setOnAction(e -> switchPane(content, notesPane()));
+        navBtns[9].setOnAction(e -> switchPane(content, schedulePane()));
+        navBtns[10].setOnAction(e -> switchPane(content, goalsPane()));
+        navBtns[11].setOnAction(e -> switchPane(content, searchPane()));
+        navBtns[12].setOnAction(e -> switchPane(content, themePane()));
+        navBtns[13].setOnAction(e -> switchPane(content, notificationsPane()));
 
         // Default panel
         switchPane(content, dashboardPane());
@@ -224,8 +206,6 @@ public class StudyHubPro extends Application {
         Button calBtn  = navBtn("🗓", "Calendar");
         Button grdBtn  = navBtn("🎓", "Grades");
         Button chrtBtn = navBtn("📈", "Analytics");
-        Button attBtn  = navBtn("📊", "Attendance");
-        Button exmBtn  = navBtn("📝", "Exams");
         Button notBtn  = navBtn("📝", "Notes");
         Button schBtn  = navBtn("🗓", "Schedule");
         Button glsBtn  = navBtn("🎯", "Goals");
@@ -244,8 +224,8 @@ public class StudyHubPro extends Application {
         userName.setStyle("-fx-text-fill: rgba(255,255,255,0.7); -fx-font-size: 12px;");
         userBox.getChildren().addAll(avatar, userName);
 
-        sb.getChildren().addAll(logoRow, sep, navLabel, dashBtn, expBtn, assBtn, evtBtn, pomBtn, calBtn, grdBtn, chrtBtn, attBtn, exmBtn, notBtn, schBtn, glsBtn, srcBtn, thmBtn, ntfBtn, spacer, userBox);
-        sb.setUserData(new Button[]{ dashBtn, expBtn, assBtn, evtBtn, pomBtn, calBtn, grdBtn, chrtBtn, attBtn, exmBtn, notBtn, schBtn, glsBtn, srcBtn, thmBtn, ntfBtn });
+        sb.getChildren().addAll(logoRow, sep, navLabel, dashBtn, expBtn, assBtn, evtBtn, pomBtn, calBtn, grdBtn, chrtBtn, notBtn, schBtn, glsBtn, srcBtn, thmBtn, ntfBtn, spacer, userBox);
+        sb.setUserData(new Button[]{ dashBtn, expBtn, assBtn, evtBtn, pomBtn, calBtn, grdBtn, chrtBtn, notBtn, schBtn, glsBtn, srcBtn, thmBtn, ntfBtn });
         return sb;
     }
 
@@ -825,30 +805,6 @@ public class StudyHubPro extends Application {
         return pane;
     }
 
-    private Pane attendancePane() {
-        VBox pane = new VBox(20);
-        pane.setPadding(new Insets(34));
-
-        Label title = sectionTitle("📊  Attendance");
-
-        AttendanceTracker attendanceTracker = new AttendanceTracker(attendance);
-
-        pane.getChildren().addAll(title, attendanceTracker.create());
-        return pane;
-    }
-
-    private Pane examsPane() {
-        VBox pane = new VBox(20);
-        pane.setPadding(new Insets(34));
-
-        Label title = sectionTitle("📝  Exams");
-
-        ExamTracker examTracker = new ExamTracker(exams);
-
-        pane.getChildren().addAll(title, examTracker.create());
-        return pane;
-    }
-
     private Pane notesPane() {
         VBox pane = new VBox(20);
         pane.setPadding(new Insets(34));
@@ -891,7 +847,7 @@ public class StudyHubPro extends Application {
 
         Label title = sectionTitle("🔍  Global Search");
 
-        GlobalSearch globalSearch = new GlobalSearch(expenses, tasks, events, notes, courses, exams, goals);
+        GlobalSearch globalSearch = new GlobalSearch(expenses, tasks, events, notes, courses, goals);
 
         pane.getChildren().addAll(title, globalSearch.create());
         return pane;

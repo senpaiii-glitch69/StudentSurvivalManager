@@ -19,18 +19,16 @@ public class GlobalSearch {
     private List<EventItem> events;
     private List<Note> notes;
     private List<Course> courses;
-    private List<Exam> exams;
     private List<Goal> goals;
 
     public GlobalSearch(List<Expense> expenses, List<Task> tasks, List<EventItem> events,
                        List<Note> notes, List<Course> courses,
-                       List<Exam> exams, List<Goal> goals) {
+                       List<Goal> goals) {
         this.expenses = expenses;
         this.tasks = tasks;
         this.events = events;
         this.notes = notes;
         this.courses = courses;
-        this.exams = exams;
         this.goals = goals;
     }
 
@@ -165,18 +163,6 @@ public class GlobalSearch {
                 ))
                 .collect(Collectors.toList()));
 
-            // Search exams
-            results.addAll(exams.stream()
-                .filter(e -> e.getTitle().toLowerCase().contains(query) ||
-                           e.getSubject().toLowerCase().contains(query))
-                .map(e -> new SearchResult(
-                    "📝 Exam",
-                    e.getTitle(),
-                    e.getSubject() + " - " + e.getStatus(),
-                    "exams"
-                ))
-                .collect(Collectors.toList()));
-
             // Search goals
             results.addAll(goals.stream()
                 .filter(g -> g.getTitle().toLowerCase().contains(query) ||
@@ -237,6 +223,7 @@ public class GlobalSearch {
         String type;
         String title;
         String detail;
+        @SuppressWarnings("unused")
         String category;
 
         SearchResult(String type, String title, String detail, String category) {
